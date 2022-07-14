@@ -1,11 +1,12 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<div id="content">
 					<Switch>
 						<Route path="/" exact component={Products} />
+						<Route path="/product/:product_id" component={ProductDetail} />
 						<Route path="/signIn" component={SignIn} />
 						<Route path="/signUp" component={SignUp} />
 					</Switch>
@@ -22,10 +24,6 @@ function App() {
 			</div>
 		</Router>
 	);
-}
-
-function Home() {
-	return <h2>Home</h2>;
 }
 
 export default App;
