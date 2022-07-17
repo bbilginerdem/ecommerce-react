@@ -7,6 +7,7 @@ import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Profile from "./pages/Profile";
 
 function App() {
 	return (
