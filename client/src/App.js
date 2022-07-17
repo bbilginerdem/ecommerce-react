@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 
+import ProtectedRoute from "./pages/ProtectedRoute";
+
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import Products from "./pages/Products";
@@ -23,7 +25,7 @@ function App() {
 						/>
 						<Route path="/signIn" component={SignIn} />
 						<Route path="/signUp" component={SignUp} />
-						<Route path="/profile" component={Profile} />
+						<ProtectedRoute path="/profile" component={Profile} />
 					</Switch>
 				</div>
 			</div>

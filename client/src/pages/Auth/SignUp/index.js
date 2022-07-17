@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import {
 	Flex,
 	Box,
@@ -18,6 +19,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 function SignUp() {
 	const { login } = useAuth();
+	let history = useHistory();
 
 	const formik = useFormik({
 		initialValues: {
@@ -33,7 +35,7 @@ function SignUp() {
 					password: values.password,
 				});
 				login(registerResponse);
-				console.log(registerResponse);
+				history.push("/profile");
 			} catch (e) {
 				bag.setErrors({ general: e.response.data.message });
 			}

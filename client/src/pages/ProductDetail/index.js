@@ -20,9 +20,7 @@ function ProductDetail() {
 		return <div>Error.</div>;
 	}
 
-  const images = data.photos.map((url) => ({ original: url }));
-  
-  console.log(process.env.REACT_APP_BASE_END_POINT);
+	const images = data.photos.map((url) => ({ original: url }));
 
 	return (
 		<div>
