@@ -13,7 +13,7 @@ import {
 
 import { useFormik } from "formik";
 import validationSchema from "./validations";
-import { fetchRegister } from "../../../api";
+import { fetchLogin } from "../../../api";
 
 import { useAuth } from "../../../contexts/AuthContext";
 
@@ -29,11 +29,11 @@ function SignIn() {
 		validationSchema,
 		onSubmit: async (values, bag) => {
 			try {
-				const registerResponse = await fetchRegister({
+				const loginResponse = await fetchLogin({
 					email: values.email,
 					password: values.password,
 				});
-				login(registerResponse);
+				login(loginResponse);
 				history.push("/profile");
 			} catch (e) {
 				bag.setErrors({ general: e.response.data.message });
