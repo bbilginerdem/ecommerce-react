@@ -27,11 +27,14 @@ const BasketProvider = ({ children }) => {
 		setItems(filtered);
 	};
 
+	const emptyBasket = () => setItems([]);
+
 	const values = {
 		items,
 		setItems,
 		addToBasket,
 		removeFromBasket,
+		emptyBasket,
 	};
 
 	return (

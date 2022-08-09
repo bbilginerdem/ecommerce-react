@@ -17,7 +17,7 @@ function Card({ item }) {
 				<Image src={item.photos[0]} alt="product" loading="lazy" />
 
 				<Box p="6">
-					<Box d="plex" alignItems="baseline">
+					<Box d="flex" alignItems="baseline">
 						{moment(item.createdAt).format("DD/MM/YYYY")}
 					</Box>
 					<Box fontWeight="semibold" as="h4" lineHeight="tight">
