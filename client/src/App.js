@@ -11,6 +11,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Profile from "./pages/Profile";
 import Basket from "./pages/Basket";
+import Admin from "./pages/Admin";
 import Error404 from "./pages/Error404";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 						<Route path="/signUp" component={SignUp} />
 						<Route path="/basket" component={Basket} />
 						<ProtectedRoute path="/profile" component={Profile} />
+						<ProtectedRoute path="/admin" component={Admin} admin={true} />
 						<Route path="*" component={Error404} />
 					</Switch>
 				</div>
