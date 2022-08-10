@@ -7,6 +7,7 @@ import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import Home from "./Home";
 import Orders from "./Orders";
 import Products from "./Products";
+import ProductsDetail from "./ProductsDetail";
 
 function Admin() {
 	const { path, url } = useRouteMatch();
@@ -31,7 +32,15 @@ function Admin() {
 				<Switch>
 					<Route exact path={path} component={Home} />
 					<Route path={`${path}/orders`} component={Orders} />
-					<Route path={`${path}/products`} component={Products} />
+					<Route
+						exact
+						path={`${path}/products`}
+						component={Products}
+					/>
+					<Route
+						path={`${path}/products/:product_id`}
+						component={ProductsDetail}
+					/>
 				</Switch>
 			</Box>
 		</div>

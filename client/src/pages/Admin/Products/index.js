@@ -62,15 +62,15 @@ function Products() {
 							cancelText="No"
 							placement="left"
 						>
-							<a href="#" style={{ marginLeft: "10px" }}>
+							<button style={{ marginLeft: "10px" }}>
 								Delete
-							</a>
+							</button>
 						</Popconfirm>
 					</>
 				),
 			},
 		];
-	}, []);
+	}, [deleteMutation]);
 
 	if (isLoading) {
 		return <div>Loading...</div>;

@@ -18,6 +18,7 @@ function Card({ item }) {
 				<Image
 					src={item.photos[0]}
 					alt="product"
+					// to prevent loading of images directly
 					loading="lazy"
 					width="100%"
 				/>
