@@ -27,8 +27,6 @@ function Orders() {
 		return <div>{error.message}</div>;
 	}
 
-	console.log(data);
-
 	return (
 		<div>
 			<Text fontSize="2xl" p={5}>
@@ -45,7 +43,7 @@ function Orders() {
 				</Thead>
 				<Tbody>
 					{data.map((item) => (
-						<Tr key={item.id}>
+						<Tr key={item._id}>
 							<Td>{item.user.email}</Td>
 							<Td>{item.adress}</Td>
 							<Td>{item.items.length}</Td>

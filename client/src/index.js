@@ -2,6 +2,7 @@ import * as ReactDOM from "react-dom";
 import React from "react";
 import "./reset.css";
 import "./index.css";
+import "antd/dist/antd.css";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
