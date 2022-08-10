@@ -1,6 +1,7 @@
 import { Box, Image, Button } from "@chakra-ui/react";
-import moment from "moment";
 import { Link } from "react-router-dom";
+// used moment for human readable date
+import moment from "moment";
 
 import { useBasket } from "../../contexts/BasketContext";
 
@@ -14,7 +15,12 @@ function Card({ item }) {
 	return (
 		<Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="3">
 			<Link to={`/product/${item._id}`}>
-				<Image src={item.photos[0]} alt="product" loading="lazy" />
+				<Image
+					src={item.photos[0]}
+					alt="product"
+					loading="lazy"
+					width="100%"
+				/>
 
 				<Box p="6">
 					<Box d="flex" alignItems="baseline">
