@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useParams } from "react-router-dom";
-import { fetchProduct } from "../../../api";
+import { fetchProduct, updateProduct } from "../../../api";
 import { useQuery } from "react-query";
 import {
 	Box,
@@ -13,6 +13,7 @@ import {
 	Textarea,
 } from "@chakra-ui/react";
 import { FieldArray, Formik } from "formik";
+import validationSchema from "./validations";
 
 function ProductsDetail() {
 	const { product_id } = useParams();
@@ -29,7 +30,7 @@ function ProductsDetail() {
 		return <div>Error: {error.message}</div>;
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = async (values, bag) => {
 		console.log("submit");
 	};
 
@@ -43,7 +44,7 @@ function ProductsDetail() {
 					price: data.price,
 					photos: data.photos,
 				}}
-				// validationSchema
+				validationSchema={validationSchema}
 				onSubmit={handleSubmit}
 			>
 				{({
@@ -67,7 +68,15 @@ function ProductsDetail() {
 											onBlur={handleBlur}
 											value={values.title}
 											disabled={isSubmitting}
+											isInvalid={
+												touched.title && errors.title
+											}
 										/>
+										{touched.title && errors.title && (
+											<Text color="red">
+												{errors.title}
+											</Text>
+										)}
 									</FormControl>
 									<FormControl mt="4">
 										<FormLabel>Price</FormLabel>
@@ -77,7 +86,15 @@ function ProductsDetail() {
 											onBlur={handleBlur}
 											value={values.price}
 											disabled={isSubmitting}
+											isInvalid={
+												touched.price && errors.price
+											}
 										/>
+										{touched.price && errors.price && (
+											<Text color="red">
+												{errors.price}
+											</Text>
+										)}
 									</FormControl>
 									<FormControl mt="4">
 										<FormLabel>Description</FormLabel>
@@ -87,7 +104,17 @@ function ProductsDetail() {
 											onBlur={handleBlur}
 											value={values.description}
 											disabled={isSubmitting}
+											isInvalid={
+												touched.description &&
+												errors.description
+											}
 										/>
+										{touched.description &&
+											errors.description && (
+												<Text color="red">
+													{errors.description}
+												</Text>
+											)}
 									</FormControl>
 									<FormControl mt="4">
 										<FormLabel>Photos</FormLabel>
@@ -142,8 +169,15 @@ function ProductsDetail() {
 												</div>
 											)}
 										/>
-                  </FormControl>
-                  <Button mt={4} width="full" type="submit" isLoading={isSubmitting}>Update</Button>
+									</FormControl>
+									<Button
+										mt={4}
+										width="full"
+										type="submit"
+										isLoading={isSubmitting}
+									>
+										Update
+									</Button>
 								</form>
 							</Box>
 						</Box>
