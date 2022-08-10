@@ -8,6 +8,7 @@ import Home from "./Home";
 import Orders from "./Orders";
 import Products from "./Products";
 import ProductsDetail from "./ProductsDetail";
+import NewProduct from "./Products/new";
 
 function Admin() {
 	const { path, url } = useRouteMatch();
@@ -36,6 +37,11 @@ function Admin() {
 						exact
 						path={`${path}/products`}
 						component={Products}
+					/>
+					<Route
+						exact
+						path={`${path}/products/new`}
+						component={NewProduct}
 					/>
 					<Route
 						path={`${path}/products/:product_id`}
