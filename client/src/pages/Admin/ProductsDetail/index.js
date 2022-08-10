@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { FieldArray, Formik } from "formik";
 import validationSchema from "./validations";
+import { message } from "antd";
 
 function ProductsDetail() {
 	const { product_id } = useParams();
@@ -31,7 +32,19 @@ function ProductsDetail() {
 	}
 
 	const handleSubmit = async (values, bag) => {
-		console.log("submit");
+		message.loading({ content: "Loading...", key: "product_update" });
+
+		try {
+			await updateProduct(values, product_id);
+
+			message.success({
+				content: "The product successfully updated",
+				key: "product_update",
+				duration: 2,
+			});
+		} catch (e) {
+			message.error("The product can't be updated!");
+		}
 	};
 
 	return (
