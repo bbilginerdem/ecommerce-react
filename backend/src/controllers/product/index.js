@@ -2,6 +2,7 @@ import Product from "../../models/product";
 import Boom from "boom";
 import ProductSchema from "./validations";
 
+// CRUD operations for products
 const Create = async (req, res, next) => {
 	const input = req.body;
 	const { error } = ProductSchema.validate(input);

@@ -51,6 +51,7 @@ const Register = async (req, res, next) => {
 	}
 };
 
+// Boom provides a set of utilities for returning HTTP errors
 const Login = async (req, res, next) => {
 	const input = req.body;
 
