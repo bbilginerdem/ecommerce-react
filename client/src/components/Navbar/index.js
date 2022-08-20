@@ -25,6 +25,7 @@ function Navbar() {
 			</div>
 
 			<div className={styles.right}>
+				{/* For users that are not logged in */}
 				{!loggedIn && (
 					<>
 						<Link to="/signIn">
@@ -36,6 +37,7 @@ function Navbar() {
 					</>
 				)}
 
+				{/* For users that are logged in */}
 				{loggedIn && (
 					<>
 						{items.length > 0 && (
@@ -46,9 +48,14 @@ function Navbar() {
 							</Link>
 						)}
 
-            {user?.role === "admin" && <Link to="/admin">
-            <Button colorScheme="pink" variant="ghost">Admin</Button>
-            </Link>}
+            {/* For admins showing admin console */}
+						{user?.role === "admin" && (
+							<Link to="/admin">
+								<Button colorScheme="pink" variant="ghost">
+									Admin
+								</Button>
+							</Link>
+						)}
 
 						<Link to="/profile">
 							<Button colorScheme="pink">Profile</Button>

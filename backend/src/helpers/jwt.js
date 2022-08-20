@@ -3,6 +3,7 @@ import Boom from "boom";
 
 import redis from "../clients/redis";
 
+// access token is valid for 10 days
 const signAccessToken = (data) => {
 	return new Promise((resolve, reject) => {
 		const payload = {
@@ -25,6 +26,7 @@ const signAccessToken = (data) => {
 	});
 };
 
+// to see if access token is valid
 const verifyAccessToken = (req, res, next) => {
 	const authorizationToken = req.headers["authorization"];
 	if (!authorizationToken) {
@@ -35,7 +37,9 @@ const verifyAccessToken = (req, res, next) => {
 		if (err) {
 			return next(
 				Boom.unauthorized(
-					err.name === "JsonWebTokenError" ? "Unauthorized" : err.message
+					err.name === "JsonWebTokenError"
+						? "Unauthorized"
+						: err.message
 				)
 			);
 		}
@@ -45,6 +49,7 @@ const verifyAccessToken = (req, res, next) => {
 	});
 };
 
+// to refresh access token
 const signRefreshToken = (user_id) => {
 	return new Promise((resolve, reject) => {
 		const payload = {
@@ -55,19 +60,25 @@ const signRefreshToken = (user_id) => {
 			issuer: "ecommerce.app",
 		};
 
-		JWT.sign(payload, process.env.JWT_REFRESH_SECRET, options, (err, token) => {
-			if (err) {
-				console.log(err);
-				reject(Boom.internal());
+		JWT.sign(
+			payload,
+			process.env.JWT_REFRESH_SECRET,
+			options,
+			(err, token) => {
+				if (err) {
+					console.log(err);
+					reject(Boom.internal());
+				}
+
+				redis.set(user_id, token, "EX", 180 * 24 * 60 * 60);
+
+				resolve(token);
 			}
-
-			redis.set(user_id, token, "EX", 180 * 24 * 60 * 60);
-
-			resolve(token);
-		});
+		);
 	});
 };
 
+// to verify refresh token
 const verifyRefreshToken = async (refresh_token) => {
 	return new Promise(async (resolve, reject) => {
 		JWT.verify(
