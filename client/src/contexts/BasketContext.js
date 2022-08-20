@@ -20,13 +20,14 @@ const BasketProvider = ({ children }) => {
 			return setItems((items) => [data, ...items]);
 		}
 
-		//
+		// if inside basket it will be removed when clicked again
 		const filtered = items.filter(
 			(item) => item._id !== findBasketItem._id
 		);
 		setItems(filtered);
 	};
 
+	// function to remove product from the basket
 	const removeFromBasket = (item_id) => {
 		const filtered = items.filter((item) => item._id !== item_id);
 		setItems(filtered);

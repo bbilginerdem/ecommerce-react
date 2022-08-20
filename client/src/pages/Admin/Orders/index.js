@@ -14,6 +14,7 @@ import { useQuery } from "react-query";
 import { fetchOrders } from "../../../api";
 
 function Orders() {
+	// getting the data that is stored in the localStorage
 	const { isLoading, isError, data, error } = useQuery(
 		"admin: orders",
 		fetchOrders
